@@ -1,4 +1,6 @@
-# kakashi - Custom regex matching for CSF.
+# Kakashi
+
+Custom regex matching for CSF
 
 ## Install
 
@@ -45,9 +47,7 @@ MIT
 
 Custom regex matching can be added to this file without it being overwritten
 by csf upgrades. The format is slightly different to regex.pm to cater for
-additional parameters. You need to specify the log file that needs to be
-scanned for log line matches in csf.conf under CUSTOMx_LOG. You can scan up
-to 9 custom logs (CUSTOM1_LOG .. CUSTOM9_LOG)
+additional parameters.
 
 The regex matches in this file will supercede the matches in regex.pm
 
