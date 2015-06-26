@@ -2,8 +2,8 @@
 
 $line = $ARGV[0];
 
-if ($line =~ /^\S+\s+\S+\s+H=\S+\s+\[(\S+)\]:\d+\s+F=\S+\s+temporarily rejected RCPT\s+\S+\s+Could not complete sender verify/)  {
-    print "- Match!\n";
+if ($line =~ /^[a-zA-Z0-9:=().-\s]{2,}\[(\S+)\]:[a-zA-Z0-9=<\-@.>\s]{2,}:\s+host lookup did not complete/) {
+    printf "Match!";
 } else {
-    print "- No Match\n";
+    print "\nFail:${line}\n";
 }

@@ -1,9 +1,12 @@
 #!/bin/bash
 #
-testCase() { ./test.sh  ./regex/${1}.pl ./dataprovider/${1}.txt; }
+#
+testCase() { ./test.sh $1 $2 | grep -v "$3" | grep -e '^$' -v; }
 
-for i in host-is-ratelimited host-lookup-did-not-complete temporarily-rejected-RCPT
+for i in host-is-ratelimited host-lookup-did-not-complete could-not-complete-sender-verify
 do
-    printf "$i :\n";
-    testCase $i;
+    printf "\nMust MATCH on $i :\n";
+    testCase "./regex/${i}.pl" "./dataprovider/${i}.txt" "Match";
+    printf "\nMust NOT match on $i :\n";
+    testCase "./regex/${i}.pl" "./dataprovider/notMatch.txt" "Fail";
 done
