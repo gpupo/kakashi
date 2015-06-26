@@ -1,5 +1,37 @@
 # kakashi - Custom regex matching for CSF.
 
+## Install
+
+1) Modify ``CUSTOM8_LOG`` in ``/etc/csf/csf.conf``:
+
+    CUSTOM8_LOG = "/var/log/exim_mainlog"
+
+2) Restart ``csf``:
+
+    csf -r;
+
+3) Get kakashi:
+
+    cd ~/
+    git clone --depth=1 https://github.com/gpupo/kakashi.git;
+
+4) Put rules:
+
+    cp ~/kakashi/regex.custom.pm /etc/csf/regex.custom.pm;
+    service lfd restart;
+
+
+After install, see logs on ``/var/log/lfd.log``
+
+
+## Update:
+
+1) Execute:
+
+    cd ~/kakashi/ && git pull;
+
+2) Repeat step 4 (install)
+
 ## Contributors
 
 - [@gpupo](https://github.com/gpupo)
@@ -7,6 +39,7 @@
 ## License
 
 MIT
+
 
 ## Doc
 
