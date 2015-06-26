@@ -2,14 +2,13 @@
 
 Custom regex matching for **CSF**
 
-Temporary IP block on:
+- [x] Temporary IP block
+  - [x] Could not complete sender verify
+  - [x] Host lookup did not complete
+  - [x] Host is ratelimited
+  - [x] Incorrect authentication data
 
-    - [x] Could not complete sender verify
-    - [x] Host lookup did not complete
-    - [x] Host is ratelimited
-    - [x] Incorrect authentication data
-
-**Caution!**: This is an extremely aggressive shinobi
+:information_source:**Caution!**: This is an extremely aggressive shinobi
 
 ## Install
 
