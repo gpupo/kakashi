@@ -1,6 +1,15 @@
 # Kakashi
 
-Custom regex matching for CSF
+Custom regex matching for **CSF**
+
+Temporary IP block on:
+
+    - [x] Could not complete sender verify
+    - [x] Host lookup did not complete
+    - [x] Host is ratelimited
+    - [x] Incorrect authentication data
+
+**Caution!**: This is an extremely aggressive shinobi
 
 ## Install
 
