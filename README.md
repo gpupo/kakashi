@@ -23,7 +23,9 @@ Custom regex matching for CSF
     service lfd restart;
 
 
-After install, see logs on ``/var/log/lfd.log``
+After install, see logs on ``/var/log/lfd.log``:
+
+    tail -f /var/log/lfd.log | grep kakashi;
 
 
 ## Update:
