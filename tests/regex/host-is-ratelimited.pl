@@ -2,8 +2,8 @@
 
 $line = $ARGV[0];
 
-if ($line =~ /^\S+\s+\S+\s+H=\[(\S+)\]:\d+\s+temporarily rejected connection in\s+\S+\s+\S+\s+\S+Host is ratelimited\s\S+\s+\S+/)  {
-    print "Match!\n";
+if ($line =~ /^[a-zA-Z0-9:=().-\s]{2,}\[(\S+)\]:[a-zA-Z0-9=<\-@.>\"\s]{2,}:\s"+Host is ratelimited\s+[\S\s]{2,}/)  {
+    printf "Match!";
 } else {
-    print "No Match\n";
+    print "\nFail:${line}\n";
 }
