@@ -44,6 +44,10 @@ After install, see logs on ``/var/log/lfd.log``:
 
 2) Repeat step 4 (install)
 
+## CLI
+
+* Enable SpamAssassin auto-deletion in CPanel from CLI
+
 ## Contributors
 
 - [@gpupo](https://github.com/gpupo)
