@@ -33,6 +33,12 @@ sub custom_line {
 		return ("Kakashi knocked a bad guy",$1,"kakashi-courier_login-authenticator-failed","5","","0");
 	}
 
+  ### HTTP Rules
+
+	# http-login-failed: Watch http login fail with http status code 401 or 241(custom error code with bypass error pages override on mod_proxy)
+	if (($lgfile eq $config{CUSTOM7_LOG}) and ($line =~ /^[a-zA-Z0-9:=().-\s]{2,}courier_login authenticator failed for\s+[\S\s]{2,}\[(\S+)\]:\d+:\s+\d+\sIncorrect authentication data\s+\S+/)) {
+		return ("Kakashi knocked a housebreaker",$1,"kakashi-http-login-failed","20","80,441","0");
+	}
 
 	return 0;
 }
