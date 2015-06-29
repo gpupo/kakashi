@@ -7,6 +7,7 @@ Custom regex matching for **CSF**
   - [x] Host lookup did not complete
   - [x] Host is ratelimited
   - [x] Incorrect authentication data
+  - [x] Watch http login fail with http status code 401
 - [x] Permanant IP block
   - [x] On mail server detected a message with a absurd spam score
 - [x] CLI Tools
