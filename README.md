@@ -7,6 +7,13 @@ Custom regex matching for **CSF**
   - [x] Host lookup did not complete
   - [x] Host is ratelimited
   - [x] Incorrect authentication data
+- [x] Permanant IP block
+  - [x] On mail server detected a message with a absurd spam score
+- [x] CLI Tools
+  - [x] Enable SpamAssassin auto-deletion
+- [ ] More
+  - [ ] Using the Lightning Cutter
+  - [ ] Takes up office as the Sixth Hokage
 
 :information_source:**Caution!**: This is an extremely aggressive shinobi
 
@@ -77,9 +84,9 @@ The regex matches in this file will supercede the matches in regex.pm
 
 The return values from this example are as follows:
 
-"Failed myftpmatch login from" = text for custom failure message
-$1 = the offending IP address
-"myftpmatch" = a unique identifier for this custom rule, must be alphanumeric and have no spaces
-"5" = the trigger level for blocking
-"20,21" = the ports to block the IP from in a comma separated list, only used if LF_SELECT enabled
-"1" = 0/temporary or 1/permanant IP block, only used if LF_TRIGGER is disabled
+``Failed myftpmatch login from`` = text for custom failure message
+``$1`` = the offending IP address
+``myftpmatch`` = a unique identifier for this custom rule, must be alphanumeric and have no spaces
+``5`` = the trigger level for blocking
+``20,21`` = the ports to block the IP from in a comma separated list, only used if LF_SELECT enabled
+``1`` = **0/temporary** or **1/permanant** IP block, *only used if LF_TRIGGER is disabled*

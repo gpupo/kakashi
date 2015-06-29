@@ -4,7 +4,7 @@ sub custom_line {
 	my $line = shift;
 	my $lgfile = shift;
 
-	### MTA Rules
+  ### MTA Rules
 
 	# could-not-complete-sender-verify
 	if (($lgfile eq $config{CUSTOM8_LOG}) and ($line =~ /^[a-zA-Z0-9:=().-\s]{2,}\[(\S+)\]:[a-zA-Z0-9=<\-@.>\s]{2,}:\s+Could not complete sender verify/)) {
@@ -21,12 +21,18 @@ sub custom_line {
 		return ("kakashi:host-lookup-did-not-complete",$1,"host-lookup-did-not-complete","1","25,465,587","0");
 	}
 
-	###MTA Login
+	#absurd-spamscore: IP block on mail server detected a message with a spam score integer greater or equal to 90
+	if (($lgfile eq $config{CUSTOM8_LOG}) and ($line =~ /^[a-zA-Z0-9:=().-\s]{2,}\[(\S+)\]:[a-zA-Z0-9=<\-@.>\s]{2,}:\s+"[a-zA-Z0-9=<\-@.>()[\]\s]{2,}:\d+\sbecause mail server detected a message with a spam score integer greater or equal to\s\d+"/)) {
+		return ("kakashi:absurd-spamscore",$1,"absurd-spamscore","1","25,465,587","1");
+	}
+
+  ###MTA Login
 
 	#courier_login-authenticator-failed
 	if (($lgfile eq $config{CUSTOM8_LOG}) and ($line =~ /^[a-zA-Z0-9:=().-\s]{2,}courier_login authenticator failed for\s+[\S\s]{2,}\[(\S+)\]:\d+:\s+\d+\sIncorrect authentication data\s+\S+/)) {
 		return ("kakashi:courier_login-authenticator-failed",$1,"courier_login-authenticator-failed","5","25,465,587","0");
 	}
+
 
 	return 0;
 }
