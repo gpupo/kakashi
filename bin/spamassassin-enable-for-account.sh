@@ -14,7 +14,7 @@ chown "$USERNAME." "/home/$USERNAME/.spamassassinenable"
 mkdir -p "/home/$USERNAME/.spamassassin"
 chown "$USERNAME." "/home/$USERNAME/.spamassassin"
 
-cat < "/home/$USERNAME/.spamassassin/user_prefs"
+cat << EOF > "/home/$USERNAME/.spamassassin/user_prefs"
 required_score 2
 rewrite_header subject *** SPAM ***
 EOF
@@ -22,7 +22,7 @@ EOF
 chown "$USERNAME." "/home/$USERNAME/.spamassassin/user_prefs"
 
 
-cat < "/home/$USERNAME/.cpanel/filter.yaml"
+cat << EOF > "/home/$USERNAME/.cpanel/filter.yaml"
 ---
 filter:
   -
