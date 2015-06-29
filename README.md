@@ -17,7 +17,7 @@ Custom regex matching for **CSF**
 
 :information_source:**Caution!**: This is an extremely aggressive shinobi
 
-## Install
+## Install (sudo required)
 
 1) Modify ``CUSTOM8_LOG`` in ``/etc/csf/csf.conf``:
 
@@ -29,13 +29,11 @@ Custom regex matching for **CSF**
 
 3) Get kakashi:
 
-    cd ~/
-    git clone --depth=1 https://github.com/gpupo/kakashi.git;
+    git clone --depth=1 https://github.com/gpupo/kakashi.git ~/kakashi;
 
 4) Put rules:
 
-    cp ~/kakashi/regex.custom.pm /etc/csf/regex.custom.pm;
-    service lfd restart;
+    sudo cp ~/kakashi/regex.custom.pm /etc/csf/regex.custom.pm && sudo service lfd restart;
 
 
 After install, see logs on ``/var/log/lfd.log``:
@@ -58,6 +56,8 @@ After install, see logs on ``/var/log/lfd.log``:
 ## Contributors
 
 - [@gpupo](https://github.com/gpupo)
+
+Check CONTRIBUTING.md
 
 ## License
 
