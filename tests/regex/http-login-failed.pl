@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 $line = $ARGV[0];
 
 # http-login-failed

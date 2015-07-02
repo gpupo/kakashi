@@ -1,4 +1,4 @@
-# Kakashi
+# Kakashi - Security application for Linux servers
 
 Custom regex matching for **CSF**
 
@@ -20,10 +20,19 @@ Custom regex matching for **CSF**
 
 ## Install (sudo required)
 
+On a server with [CSF](http://www.configserver.com/cp/csf.html) previously installed:
+
 1) Modify CUSTOM vars in your ``/etc/csf/csf.conf``:
 
-    CUSTOM7_LOG = "/var/log/http/acess_log" #Customize!
-    CUSTOM8_LOG = "/var/log/exim_mainlog"
+```bash
+
+CUSTOM7_LOG = "/var/log/http/acess_log" #Customize!
+CUSTOM8_LOG = "/var/log/exim_mainlog"
+
+#Optional but recomended:
+DENY_IP_LIMIT = "1000"
+
+```
 
 2) Restart ``csf``:
 

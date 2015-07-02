@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+#
 # absurd-spamscore
 # IP block on mail server detected a message with a spam score integer greater or equal to 90
 
