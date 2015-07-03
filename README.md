@@ -1,5 +1,7 @@
 # Kakashi - Security application for Linux servers
 
+[![Join the chat at https://gitter.im/gpupo/kakashi](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gpupo/kakashi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Custom regex matching for **CSF**
 
 - [x] Temporary IP block
