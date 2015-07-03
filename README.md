@@ -1,5 +1,10 @@
 # Kakashi - Security application for Linux servers
 
+[![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/kakashi/blob/master/LICENSE)
+[![Gitter(help)](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/gpupo/kakashi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Donate](https://img.shields.io/badge/Donate-%24-brightgreen.svg)](http://www.g1mr.com/donation/)
+
 Custom regex matching for **CSF**
 
 - [x] Temporary IP block
