@@ -1,4 +1,11 @@
-# Kakashi - Security application for Linux servers
+---
+layout: default
+description: "Security application for Linux servers"
+---
+
+# Kakashi
+
+Security application for Linux servers
 
 [![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/kakashi/blob/master/LICENSE)
@@ -29,15 +36,13 @@ On a server with [CSF](http://www.configserver.com/cp/csf.html) previously insta
 
 1) Modify CUSTOM vars in your ``/etc/csf/csf.conf``:
 
-```bash
 
-CUSTOM7_LOG = "/var/log/http/acess_log" #Customize!
-CUSTOM8_LOG = "/var/log/exim_mainlog"
+    CUSTOM7_LOG = "/var/log/http/acess_log" #Customize!
+    CUSTOM8_LOG = "/var/log/exim_mainlog"
 
-#Optional but recomended:
-DENY_IP_LIMIT = "1000"
+    #Optional but recomended:
+    DENY_IP_LIMIT = "1000"
 
-```
 
 2) Restart ``csf``:
 
@@ -73,7 +78,7 @@ After install, see logs on ``/var/log/lfd.log``:
 
 - [@gpupo](https://github.com/gpupo)
 
-Check CONTRIBUTING.md
+Check ``CONTRIBUTING.md``
 
 ## License
 
