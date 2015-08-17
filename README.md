@@ -83,3 +83,8 @@ Check ``CONTRIBUTING.md``
 ## License
 
 MIT
+
+## build
+
+    ./bin/build.sh
+    

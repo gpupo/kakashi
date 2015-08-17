@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # This file is part of gpupo/kakashi
-# https://github.com/gpupo/kakashi
+# http://www.g1mr.com/kakashi
 #
 # (c) Gilmar Pupo <g@g1mr.com>
 #
