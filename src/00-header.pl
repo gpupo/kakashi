@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 # This file is part of gpupo/kakashi
 # http://www.g1mr.com/kakashi
 #
