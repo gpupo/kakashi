@@ -7,7 +7,9 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
-# build-2015-08-17-11h58
+# Warning: This file is generated automatically.
+# To improve it, see bin/build.sh and edit the corresponding source code
+# build-2015-08-17-12h01
 
 sub custom_line {
 	my $line = shift;

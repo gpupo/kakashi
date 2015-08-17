@@ -7,8 +7,10 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
+# Warning: This file is generated automatically.
+# To improve it, see bin/build.sh and edit the corresponding source code
 # CSF whitelist IP address ranges, contribution of Cleber Souza
-# build-2015-08-17-11h58
+# build-2015-08-17-12h01
 csf -a 64.18.0.0/20 "Kakashi gmail whitelist database";
 csf -a 64.233.160.0/19 "Kakashi gmail whitelist database";
 csf -a 66.102.0.0/20 "Kakashi gmail whitelist database";
