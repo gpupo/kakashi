@@ -1,29 +1,22 @@
----
-layout: default
-description: "Security application for Linux servers"
----
-
 # Kakashi
 
 Security application for Linux servers
 
-[![Author](http://img.shields.io/badge/author-@gpupo-blue.svg)](https://twitter.com/gpupo)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/gpupo/kakashi/blob/master/LICENSE)
 [![Gitter(help)](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/gpupo/kakashi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Donate](https://img.shields.io/badge/Donate-%24-brightgreen.svg)](http://www.g1mr.com/donation/)
 
 Custom regex matching for **CSF**
 
-- [x] Temporary IP block
-  - [x] Could not complete sender verify
-  - [x] Host lookup did not complete
-  - [x] Host is ratelimited
-  - [x] Incorrect authentication data
-  - [x] Watch http login fail with http status code 401
-- [x] Permanant IP block
-  - [x] On mail server detected a message with a absurd spam score
-- [x] CLI Tools
-  - [x] Enable SpamAssassin auto-deletion
+- Temporary IP block
+  - Could not complete sender verify
+  - Host lookup did not complete
+  - Host is ratelimited
+  - Incorrect authentication data
+  - Watch http login fail with http status code 401
+- Permanant IP block
+  - On mail server detected a message with a absurd spam score
+- CLI Tools
+  - Enable SpamAssassin auto-deletion
 - [ ] More
   - [ ] Using the Lightning Cutter
   - [ ] Takes up office as the Sixth Hokage
@@ -56,10 +49,17 @@ On a server with [CSF](http://www.configserver.com/cp/csf.html) previously insta
 
     sudo cp ~/kakashi/regex.custom.pm /etc/csf/regex.custom.pm && sudo service lfd restart;
 
+Note: You can choose to use the more aggressive rules, replacing ``regex.custom.pm`` by ``regex.sharingan.pm`` in the above command.
 
 After install, see logs on ``/var/log/lfd.log``:
 
     tail -f /var/log/lfd.log | grep kakashi;
+
+5) Whitelist (recomended)
+
+Add CSF whitelist IP address ranges (Gmail, Outlook, etc)
+
+    sudo ~/kakashi/bin/csf-add-whitelist.sh;
 
 
 ## Update:
@@ -87,4 +87,3 @@ MIT
 ## build
 
     ./bin/build.sh
-    
