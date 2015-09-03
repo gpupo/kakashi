@@ -32,9 +32,9 @@ choiceActionForIp() {
     echo "Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
     read -p "Action for $IP? (d/i/a): " choice
     case "$choice" in
-      dD ) floodDeny $IP;;
-      iI ) floodGrep $IP;;
-      aA ) floodAllow $IP;;
+      d ) floodDeny $IP;;
+      i ) floodGrep $IP;;
+      a ) floodAllow $IP;;
       * ) echo "none";;
     esac
 }

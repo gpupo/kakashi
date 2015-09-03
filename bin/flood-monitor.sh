@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-09-03-09h49 | source: src/flood-monitor/
+# build-2015-09-03-09h58 | source: src/flood-monitor/
 #
 ##
 
@@ -52,9 +52,9 @@ choiceActionForIp() {
     echo "Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
     read -p "Action for $IP? (d/i/a): " choice
     case "$choice" in
-      dD ) floodDeny $IP;;
-      iI ) floodGrep $IP;;
-      aA ) floodAllow $IP;;
+      d ) floodDeny $IP;;
+      i ) floodGrep $IP;;
+      a ) floodAllow $IP;;
       * ) echo "none";;
     esac
 }
