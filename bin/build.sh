@@ -24,11 +24,25 @@ whitelist_command() {
     done <  data/ip/whitelist/$1.txt;
 }
 
+initFile() {
+    echo '#!/bin/bash' > $1;
+    cat src/00-header.pl >> $1;
+    echo "# $RELEASE_ID" >> $1;
+}
+
+compileBin() {
+    initFile bin/$1.sh;
+    cat src/$1/* >> bin/$1.sh;
+}
+
+
 #bin
-echo '#!/bin/bash' > bin/csf-add-whitelist.sh;
-cat src/00-header.pl >> bin/csf-add-whitelist.sh;
+
+initFile bin/csf-add-whitelist.sh;
 cat data/ip/whitelist/00-README.md >> bin/csf-add-whitelist.sh;
-echo "# $RELEASE_ID" >> bin/csf-add-whitelist.sh;
 whitelist_command gmail >> bin/csf-add-whitelist.sh;
 whitelist_command outlook >> bin/csf-add-whitelist.sh;
-chmod +x bin/csf-add-whitelist.sh;
+
+compileBin flood-monitor;
+
+chmod +x bin/*.sh;
