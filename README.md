@@ -17,6 +17,8 @@ Custom regex matching for **CSF**
   - On mail server detected a message with a absurd spam score
 - CLI Tools
   - Enable SpamAssassin auto-deletion
+  - Tool for checking high hits on httpd server
+
 - [ ] More
   - [ ] Using the Lightning Cutter
   - [ ] Takes up office as the Sixth Hokage
@@ -73,6 +75,11 @@ Add CSF whitelist IP address ranges (Gmail, Outlook, etc)
 ## CLI
 
 * Enable SpamAssassin auto-deletion in CPanel from CLI
+
+### Flood Monitor
+
+    sudo ~/kakashi/bin/flood-monitor.sh
+
 
 ## Contributors
 
