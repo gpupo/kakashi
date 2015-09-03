@@ -1,0 +1,2 @@
+MEDIAN=300;
+DENY_TTL="2h";
