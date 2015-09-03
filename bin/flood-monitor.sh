@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 # This file is part of gpupo/kakashi
 # http://www.g1mr.com/kakashi
 #
@@ -9,7 +10,11 @@
 #
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
-# build-2015-09-03-09h41
+#
+# build-2015-09-03-09h49 | source: src/flood-monitor/
+#
+##
+
 # Tool for checking high hits on httpd server
 MEDIAN=300;
 DENY_TTL="2h";

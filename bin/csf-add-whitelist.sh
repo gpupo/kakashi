@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 # This file is part of gpupo/kakashi
 # http://www.g1mr.com/kakashi
 #
@@ -9,7 +10,11 @@
 #
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
-# build-2015-09-03-09h41
+#
+# build-2015-09-03-09h49 | src: data/ip/whitelist
+#
+##
+
 # CSF whitelist IP address ranges, contribution of Cleber Souza
 csf -a 64.18.0.0/20 "Kakashi gmail whitelist database";
 csf -a 64.233.160.0/19 "Kakashi gmail whitelist database";
