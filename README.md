@@ -47,6 +47,8 @@ On a server with [CSF](http://www.configserver.com/cp/csf.html) previously insta
 
     git clone --depth=1 https://github.com/gpupo/kakashi.git ~/kakashi;
 
+In case using csf on cpanel, for install git: yum install git --disableexcludes=main -y
+
 4) Put rules:
 
     sudo cp ~/kakashi/regex.custom.pm /etc/csf/regex.custom.pm && sudo service lfd restart;
