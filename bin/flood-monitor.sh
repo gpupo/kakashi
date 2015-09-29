@@ -11,13 +11,14 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-09-03-09h58 | source: src/flood-monitor/
+# build-2015-09-29-10h12 | source: src/flood-monitor/
 #
 ##
 
 # Tool for checking high hits on httpd server
-MEDIAN=300;
-DENY_TTL="2h";
+MEDIAN=${MEDIAN:-300};
+DENY_TTL=${DENY_TTL:-2h};
+DEFAULT_ACTION=${DEFAULT_ACTION:-};
 floodGrep() {
     echo "";
     grep $1 /var/log/httpd/access_log | tail -n 30 | cut -c1-120 | uniq;
@@ -35,8 +36,12 @@ floodAllow() {
     echo $1 >> ~/.kakashi/allow;
 }
 
-floodDeny() {
+floodDenyTemp() {
     csf -td $1 $DENY_TTL flooder;
+}
+
+floodDeny() {
+    csf -d $1 $DENY_TTL flooder;
 }
 
 floodList() {
@@ -49,9 +54,16 @@ floodList() {
 
 choiceActionForIp() {
     IP=$1;
-    echo "Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
+    echo "Temporary Deny = t | Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
     read -p "Action for $IP? (d/i/a): " choice
-    case "$choice" in
+    actionForIp $IP $choice
+}
+
+actionForIp() {
+    IP=$1;
+    ACTION=${2:-};
+    case "$ACTION" in
+      t ) floodDenyTemp $IP;;
       d ) floodDeny $IP;;
       i ) floodGrep $IP;;
       a ) floodAllow $IP;;
@@ -65,7 +77,12 @@ floodMonitor() {
        IP=$(echo $L | cut -d ";" -f 3)
 
        if [ "$COUNT" -gt "$MEDIAN" ]; then
-           choiceActionForIp $IP;
+           if [ "$DEFAULT_ACTION" == "" ];then
+               echo "Default action: $DEFAULT_ACTION";
+               actionForIp $IP $DEFAULT_ACTION
+           else
+               choiceActionForIp $IP;
+           fi
        fi
     done
 }

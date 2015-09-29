@@ -35,7 +35,13 @@ choiceActionForIp() {
     IP=$1;
     echo "Temporary Deny = t | Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
     read -p "Action for $IP? (d/i/a): " choice
-    case "$choice" in
+    actionForIp $IP $choice
+}
+
+actionForIp() {
+    IP=$1;
+    ACTION=${2:-};
+    case "$ACTION" in
       t ) floodDenyTemp $IP;;
       d ) floodDeny $IP;;
       i ) floodGrep $IP;;
@@ -51,7 +57,8 @@ floodMonitor() {
 
        if [ "$COUNT" -gt "$MEDIAN" ]; then
            if [ "$DEFAULT_ACTION" == "" ];then
-               echo NULL
+               echo "Default action: $DEFAULT_ACTION";
+               actionForIp $IP $DEFAULT_ACTION
            else
                choiceActionForIp $IP;
            fi
