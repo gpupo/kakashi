@@ -34,7 +34,7 @@ floodList() {
 choiceActionForIp() {
     IP=$1;
     echo "Temporary Deny = t | Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
-    read -p "Action for $IP? (d/i/a): " choice
+    read -p "Action for $IP? (t/d/i/a): " choice
     actionForIp $IP $choice
 }
 
