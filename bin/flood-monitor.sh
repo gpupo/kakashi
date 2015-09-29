@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-09-29-10h12 | source: src/flood-monitor/
+# build-2015-09-29-10h14 | source: src/flood-monitor/
 #
 ##
 
@@ -78,10 +78,10 @@ floodMonitor() {
 
        if [ "$COUNT" -gt "$MEDIAN" ]; then
            if [ "$DEFAULT_ACTION" == "" ];then
+               choiceActionForIp $IP;
+           else
                echo "Default action: $DEFAULT_ACTION";
                actionForIp $IP $DEFAULT_ACTION
-           else
-               choiceActionForIp $IP;
            fi
        fi
     done

@@ -57,10 +57,10 @@ floodMonitor() {
 
        if [ "$COUNT" -gt "$MEDIAN" ]; then
            if [ "$DEFAULT_ACTION" == "" ];then
+               choiceActionForIp $IP;
+           else
                echo "Default action: $DEFAULT_ACTION";
                actionForIp $IP $DEFAULT_ACTION
-           else
-               choiceActionForIp $IP;
            fi
        fi
     done
