@@ -80,6 +80,10 @@ Add CSF whitelist IP address ranges (Gmail, Outlook, etc)
 
     sudo ~/kakashi/bin/flood-monitor.sh
 
+Monitor every 5 minutes and Blocking for 6 hours IPs with more than 300 connections in the sample:
+
+    export DEFAULT_ACTION=t; export MEDIAN=300; export DENY_TTL=6h;
+    while true; do  printf "\n\n--$(date)---\n\n"; ~/kakashi/bin/flood-monitor.sh; sleep 300; done
 
 ## Contributors
 
