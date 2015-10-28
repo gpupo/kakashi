@@ -11,14 +11,36 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-09-29-10h14 | source: src/flood-monitor/
+# build-2015-10-28-16h10 | source: src/flood-monitor/
 #
 ##
 
 # Tool for checking high hits on httpd server
+#
+# Actions:
+# - t) Temporary Deny
+# - d) Deny
+# - i) Info
+# - a) Add to flood whitelist
+#
+# Usage
+#
+# - Interactive mode:
+# ~/kakashi/bin/flood-monitor.sh
+#
+# - Non interactive With parameters:
+# export DEFAULT_ACTION=t; export MEDIAN=300; export DENY_TTL=6h; ~/kakashi/bin/flood-monitor.sh
+#
 MEDIAN=${MEDIAN:-300};
 DENY_TTL=${DENY_TTL:-2h};
 DEFAULT_ACTION=${DEFAULT_ACTION:-};
+REVERSE_CHECK=${REVERSE_CHECK:-false};
+
+touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow
+csf() {
+    /usr/sbin/csf "$@"
+}
+
 floodGrep() {
     echo "";
     grep $1 /var/log/httpd/access_log | tail -n 30 | cut -c1-120 | uniq;
@@ -55,7 +77,7 @@ floodList() {
 choiceActionForIp() {
     IP=$1;
     echo "Temporary Deny = t | Deny = d | More Info = i | Add to flood whitelist = a | ENTER for do nothing"
-    read -p "Action for $IP? (d/i/a): " choice
+    read -p "Action for $IP? (t/d/i/a): " choice
     actionForIp $IP $choice
 }
 
@@ -86,5 +108,33 @@ floodMonitor() {
        fi
     done
 }
+
+reverseDNSLookupDomain() {
+    host $1 | rev | cut -d "." -f2-3 | rev;
+};
+
+reverseMonitor() {
+    for L in `cat /tmp/kakashi-flood-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
+       IP=$(echo $L | cut -d ";" -f 3)
+       COUNT=$(echo $L | cut -d ";" -f 2)
+       reverseDomain=$(reverseDNSLookupDomain $IP);
+       listed=0;
+       if grep -q "$reverseDomain" ~/.kakashi/reverse.deny; then
+           listed=1;
+           if [ "$DEFAULT_ACTION" == "" ];then
+               choiceActionForIp $IP;
+           else
+               echo "Default action for [$reverseDomain]: $DEFAULT_ACTION";
+               actionForIp $IP $DEFAULT_ACTION
+           fi
+       fi
+
+       echo "reverse,$reverseDomain,$IP,$listed,$COUNT" >> /var/log/kakashi-flood-reverse-monitor.log ;
+    done
+}
 floodList;
-floodMonitor
+floodMonitor;
+
+if [ "$REVERSE_CHECK" == true ]; then
+    reverseMonitor;
+fi
