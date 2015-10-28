@@ -7,7 +7,7 @@
 
 DEFAULT_ACTION=t;
 MEDIAN=350;
-DENY_TTL=1h;
+DENY_TTL=6h;
 REVERSE_CHECK=true;
 alias csf="/usr/sbin/csf";
 printf "\n\n--$(date)---\n\n";
