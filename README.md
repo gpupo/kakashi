@@ -85,6 +85,8 @@ Monitor every 5 minutes and Blocking for 6 hours IPs with more than 300 connecti
     export DEFAULT_ACTION=t; export MEDIAN=300; export DENY_TTL=6h;
     while true; do  printf "\n\n--$(date)---\n\n"; ~/kakashi/bin/flood-monitor.sh; sleep 300; done
 
+See ``bin/crontab-script-default.sh``
+
 ## Contributors
 
 - [@gpupo](https://github.com/gpupo)

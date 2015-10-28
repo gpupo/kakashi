@@ -15,8 +15,6 @@ cat src/sharingan/* >> regex.sharingan.pm;
 cat src/99-footer.pl  >> regex.custom.pm;
 cat src/99-footer.pl  >> regex.sharingan.pm;
 
-
-
 whitelist_command() {
     while read -r line
     do
@@ -38,11 +36,11 @@ compileBin() {
     cat src/$1/* >> bin/$1.sh;
 }
 
-
 #bin
-
 initFile bin/csf-add-whitelist.sh "src: data/ip/whitelist";
 cat data/ip/whitelist/00-README.md >> bin/csf-add-whitelist.sh;
+cat data/ip/whitelist/reverse.sh >> bin/csf-add-whitelist.sh;
+echo '# CSF whitelist IP address ranges, contribution of Cleber Souza' >> bin/csf-add-whitelist.sh;
 whitelist_command gmail >> bin/csf-add-whitelist.sh;
 whitelist_command outlook >> bin/csf-add-whitelist.sh;
 

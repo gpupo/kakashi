@@ -1,5 +1,4 @@
-# Reverse IPs
-
+# Reverse IPs (use reverseAnalytic.R)
 csf -a  157.55.39.0/24  'Kakashi whitelist for reverse response msn.com ';
 csf -a  207.46.13.0/24  'Kakashi whitelist for reverse response msn.com ';
 csf -a  65.55.213.0/24  'Kakashi whitelist for reverse response msn.com ';

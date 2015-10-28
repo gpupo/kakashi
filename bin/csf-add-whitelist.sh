@@ -11,10 +11,22 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-09-29-10h14 | src: data/ip/whitelist
+# build-2015-10-28-16h10 | src: data/ip/whitelist
 #
 ##
 
+# Reverse IPs
+
+csf -a  157.55.39.0/24  'Kakashi whitelist for reverse response msn.com ';
+csf -a  207.46.13.0/24  'Kakashi whitelist for reverse response msn.com ';
+csf -a  65.55.213.0/24  'Kakashi whitelist for reverse response msn.com ';
+csf -a  66.102.6.0/24  'Kakashi whitelist for reverse response google.com ';
+csf -a  66.249.69.0/24  'Kakashi whitelist for reverse response googlebot.com ';
+csf -a  66.249.75.0/24  'Kakashi whitelist for reverse response googlebot.com ';
+csf -a  66.249.83.0/24  'Kakashi whitelist for reverse response google.com ';
+csf -a  66.249.88.0/24  'Kakashi whitelist for reverse response google.com ';
+csf -a  66.249.89.0/24  'Kakashi whitelist for reverse response google.com ';
+csf -a  68.180.230.0/24  'Kakashi whitelist for reverse response yahoo.net ';
 # CSF whitelist IP address ranges, contribution of Cleber Souza
 csf -a 64.18.0.0/20 "Kakashi gmail whitelist database";
 csf -a 64.233.160.0/19 "Kakashi gmail whitelist database";
