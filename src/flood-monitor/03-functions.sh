@@ -1,3 +1,7 @@
+csf() {
+    /usr/sbin/csf "$@"
+}
+
 floodGrep() {
     echo "";
     grep $1 /var/log/httpd/access_log | tail -n 30 | cut -c1-120 | uniq;
