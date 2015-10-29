@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-28-16h10 | source: src/flood-monitor/
+# build-2015-10-29-13h29 | source: src/flood-monitor/
 #
 ##
 
@@ -37,6 +37,7 @@ DEFAULT_ACTION=${DEFAULT_ACTION:-};
 REVERSE_CHECK=${REVERSE_CHECK:-false};
 
 touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow
+executionId=$(date +%Y-%m-%d-%Hh%M);
 csf() {
     /usr/sbin/csf "$@"
 }
@@ -59,7 +60,9 @@ floodAllow() {
 }
 
 floodDenyTemp() {
-    csf -td $1 $DENY_TTL flooder;
+    COMMENT=${2:"flooder"};
+    echo -n $executionId;
+    csf -td $1 $DENY_TTL $COMMENT;
 }
 
 floodDeny() {
@@ -70,8 +73,7 @@ floodList() {
     compileIgnoreList;
     tail -n 20000 /var/log/httpd/access_log \
     | grep -v -f /tmp/kakashi-flood-ignore | tail -n 10000 | cut -d' ' -f 1,12-14 \
-    | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n 20 \
-    | tee /tmp/kakashi-flood-result;
+    | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n 100 > /tmp/kakashi-flood-result;
 }
 
 choiceActionForIp() {
@@ -84,8 +86,9 @@ choiceActionForIp() {
 actionForIp() {
     IP=$1;
     ACTION=${2:-};
+    COMMENT=${3:-};
     case "$ACTION" in
-      t ) floodDenyTemp $IP;;
+      t ) floodDenyTemp $IP $COMMENT;;
       d ) floodDeny $IP;;
       i ) floodGrep $IP;;
       a ) floodAllow $IP;;
@@ -110,7 +113,7 @@ floodMonitor() {
 }
 
 reverseDNSLookupDomain() {
-    host $1 | rev | cut -d "." -f2-3 | rev;
+    host $1 | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
 };
 
 reverseMonitor() {
@@ -124,8 +127,8 @@ reverseMonitor() {
            if [ "$DEFAULT_ACTION" == "" ];then
                choiceActionForIp $IP;
            else
-               echo "Default action for [$reverseDomain]: $DEFAULT_ACTION";
-               actionForIp $IP $DEFAULT_ACTION
+               echo -n "Default action for [$reverseDomain]: $DEFAULT_ACTION,";
+               actionForIp $IP $DEFAULT_ACTION "$reverseDomain REVERSE BLACKLISTED"
            fi
        fi
 

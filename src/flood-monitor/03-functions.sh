@@ -20,7 +20,9 @@ floodAllow() {
 }
 
 floodDenyTemp() {
-    csf -td $1 $DENY_TTL flooder;
+    COMMENT=${2:"flooder"};
+    echo -n $executionId;
+    csf -td $1 $DENY_TTL $COMMENT;
 }
 
 floodDeny() {
@@ -31,8 +33,7 @@ floodList() {
     compileIgnoreList;
     tail -n 20000 /var/log/httpd/access_log \
     | grep -v -f /tmp/kakashi-flood-ignore | tail -n 10000 | cut -d' ' -f 1,12-14 \
-    | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n 20 \
-    | tee /tmp/kakashi-flood-result;
+    | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n 100 > /tmp/kakashi-flood-result;
 }
 
 choiceActionForIp() {
@@ -45,8 +46,9 @@ choiceActionForIp() {
 actionForIp() {
     IP=$1;
     ACTION=${2:-};
+    COMMENT=${3:-};
     case "$ACTION" in
-      t ) floodDenyTemp $IP;;
+      t ) floodDenyTemp $IP $COMMENT;;
       d ) floodDeny $IP;;
       i ) floodGrep $IP;;
       a ) floodAllow $IP;;

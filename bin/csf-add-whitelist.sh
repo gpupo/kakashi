@@ -11,12 +11,11 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-28-16h10 | src: data/ip/whitelist
+# build-2015-10-29-13h29 | src: data/ip/whitelist
 #
 ##
 
-# Reverse IPs
-
+# Reverse IPs (use reverseAnalytic.R)
 csf -a  157.55.39.0/24  'Kakashi whitelist for reverse response msn.com ';
 csf -a  207.46.13.0/24  'Kakashi whitelist for reverse response msn.com ';
 csf -a  65.55.213.0/24  'Kakashi whitelist for reverse response msn.com ';
