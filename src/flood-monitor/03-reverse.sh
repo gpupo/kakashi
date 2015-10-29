@@ -1,6 +1,6 @@
 
 reverseDNSLookupDomain() {
-    host $1 | rev | cut -d "." -f2-3 | rev;
+    host $1 | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
 };
 
 reverseMonitor() {
@@ -14,8 +14,8 @@ reverseMonitor() {
            if [ "$DEFAULT_ACTION" == "" ];then
                choiceActionForIp $IP;
            else
-               echo "Default action for [$reverseDomain]: $DEFAULT_ACTION";
-               actionForIp $IP $DEFAULT_ACTION
+               echo -n "Default action for [$reverseDomain]: $DEFAULT_ACTION,";
+               actionForIp $IP $DEFAULT_ACTION "$reverseDomain REVERSE BLACKLISTED"
            fi
        fi
 
