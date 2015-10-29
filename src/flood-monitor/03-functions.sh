@@ -1,6 +1,4 @@
-csf() {
-    /usr/sbin/csf "$@"
-}
+csf() { /usr/sbin/csf "$@" | tr "\n" ";"; }
 
 floodGrep() {
     echo "";
