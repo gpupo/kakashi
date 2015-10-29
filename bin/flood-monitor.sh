@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-29-13h44 | source: src/flood-monitor/
+# build-2015-10-29-13h51 | source: src/flood-monitor/
 #
 ##
 
@@ -38,9 +38,7 @@ REVERSE_CHECK=${REVERSE_CHECK:-false};
 
 touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow
 executionId=$(date +%Y-%m-%d-%H:%M);
-csf() {
-    /usr/sbin/csf "$@"
-}
+csf() { /usr/sbin/csf "$@" | tr "\n" ";"; }
 
 floodGrep() {
     echo "";
