@@ -14,7 +14,7 @@ reverseMonitor() {
            if [ "$DEFAULT_ACTION" == "" ];then
                choiceActionForIp $IP;
            else
-               echo -n "Default action for [$reverseDomain]: $DEFAULT_ACTION,";
+               echo -n "$executionId) Default action for [$reverseDomain]: $DEFAULT_ACTION,";
                actionForIp $IP $DEFAULT_ACTION "$reverseDomain REVERSE BLACKLISTED"
            fi
        fi
