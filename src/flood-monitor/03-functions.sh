@@ -20,9 +20,8 @@ floodAllow() {
 }
 
 floodDenyTemp() {
-    COMMENT=${2:"flooder"};
-    echo -n $executionId;
-    csf -td $1 $DENY_TTL $COMMENT;
+    COMMENT=${2-"flooder"};
+    csf -td $1 $DENY_TTL "$COMMENT";
 }
 
 floodDeny() {
