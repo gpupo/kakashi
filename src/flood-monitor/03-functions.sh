@@ -20,6 +20,7 @@ floodAllow() {
 floodDenyTemp() {
     COMMENT=${2-"flooder"};
     csf -td $1 $DENY_TTL "$COMMENT";
+    echo "";
 }
 
 floodDeny() {
@@ -45,7 +46,7 @@ actionForIp() {
     ACTION=${2:-};
     COMMENT=${3:-};
     case "$ACTION" in
-      t ) floodDenyTemp $IP $COMMENT;;
+      t ) floodDenyTemp $IP "$COMMENT";;
       d ) floodDeny $IP;;
       i ) floodGrep $IP;;
       a ) floodAllow $IP;;
