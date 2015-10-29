@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-29-13h51 | source: src/flood-monitor/
+# build-2015-10-29-14h06 | source: src/flood-monitor/
 #
 ##
 
@@ -60,6 +60,7 @@ floodAllow() {
 floodDenyTemp() {
     COMMENT=${2-"flooder"};
     csf -td $1 $DENY_TTL "$COMMENT";
+    echo "";
 }
 
 floodDeny() {
@@ -85,7 +86,7 @@ actionForIp() {
     ACTION=${2:-};
     COMMENT=${3:-};
     case "$ACTION" in
-      t ) floodDenyTemp $IP $COMMENT;;
+      t ) floodDenyTemp $IP "$COMMENT";;
       d ) floodDeny $IP;;
       i ) floodGrep $IP;;
       a ) floodAllow $IP;;
