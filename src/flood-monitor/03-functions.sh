@@ -1,4 +1,4 @@
-csf() { /usr/sbin/csf "$@" | tr "\n" ";"; }
+csf() { /usr/sbin/csf "$@"; }
 
 floodGrep() {
     echo "";
@@ -19,7 +19,7 @@ floodAllow() {
 
 floodDenyTemp() {
     COMMENT=${2-"flooder"};
-    csf -td $1 $DENY_TTL "$COMMENT";
+    csf -td $1 $DENY_TTL "$COMMENT" | tr "\n" ";";
     echo "";
 }
 

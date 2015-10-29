@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-29-14h06 | source: src/flood-monitor/
+# build-2015-10-29-14h54 | source: src/flood-monitor/
 #
 ##
 
@@ -38,7 +38,7 @@ REVERSE_CHECK=${REVERSE_CHECK:-false};
 
 touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow
 executionId=$(date +%Y-%m-%d-%H:%M);
-csf() { /usr/sbin/csf "$@" | tr "\n" ";"; }
+csf() { /usr/sbin/csf "$@"; }
 
 floodGrep() {
     echo "";
@@ -59,7 +59,7 @@ floodAllow() {
 
 floodDenyTemp() {
     COMMENT=${2-"flooder"};
-    csf -td $1 $DENY_TTL "$COMMENT";
+    csf -td $1 $DENY_TTL "$COMMENT" | tr "\n" ";";
     echo "";
 }
 
@@ -125,7 +125,7 @@ reverseMonitor() {
            if [ "$DEFAULT_ACTION" == "" ];then
                choiceActionForIp $IP;
            else
-               echo -n "$executionId) Default action for [$reverseDomain]: $DEFAULT_ACTION,";
+               echo -n "$executionId Default action for [$reverseDomain]: $DEFAULT_ACTION,";
                actionForIp $IP $DEFAULT_ACTION "$reverseDomain REVERSE BLACKLISTED"
            fi
        fi
