@@ -8,7 +8,7 @@ kakashi-reverse-reorder-list() {
 }
 
 kakashi-reverse-add-to-list() {
-    echo "Add $1 to $2 list";
+    echo "* Add $1 to [$2] list";
     echo "$1" >> ~/.kakashi/reverse.$2;
 }
 
@@ -50,6 +50,7 @@ for L in `cat ~/.kakashi/reverse.domains.txt`;do
    echo "Deny = d | Add to flood whitelist = a | Suspect = s | ENTER for do nothing"
    read -p "Action for $L? (d/a/s): " choice
    actionForDomain $L $choice
+   printf "---\n\n";
 done
 
 
