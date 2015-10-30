@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-30-09h42 | source: src/flood-monitor/
+# build-2015-10-30-13h49 | source: src/flood-monitor/
 #
 ##
 
@@ -35,8 +35,11 @@ MEDIAN=${MEDIAN:-300};
 DENY_TTL=${DENY_TTL:-2h};
 DEFAULT_ACTION=${DEFAULT_ACTION:-};
 REVERSE_CHECK=${REVERSE_CHECK:-false};
+touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow ~/.kakashi/reverse.suspect ~/.kakashi/config
 
-touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow
+#Custom config file for overwrite default values
+source ~/.kakashi/config
+
 executionId=$(date +%Y-%m-%d-%H:%M);
 csf() { /usr/sbin/csf "$@"; }
 
@@ -103,7 +106,7 @@ floodMonitor() {
            if [ "$DEFAULT_ACTION" == "" ];then
                choiceActionForIp $IP;
            else
-               echo "Default action: $DEFAULT_ACTION";
+               echo -n "$executionId Default action for [$IP]: $DEFAULT_ACTION,";
                actionForIp $IP $DEFAULT_ACTION "Flood ($COUNT hits)"
            fi
        fi
