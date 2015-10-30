@@ -1,10 +1,51 @@
+#!/bin/bash
+#
+
+kakashi-reverse-reorder-list() {
+    cat ~/.kakashi/reverse.$1 | sort -u > /tmp/kakashi-reverse.$1;
+    cat /tmp/kakashi-reverse.$1  > ~/.kakashi/reverse.$1;
+    echo "Ordered $1 List";
+}
+
+kakashi-reverse-add-to-list() {
+    echo "Add $1 to $2 list";
+    echo "$1" >> ~/.kakashi/reverse.$2;
+}
+
+kakashi-reverse-deny() {
+    kakashi-reverse-add-to-list $1 "deny";
+}
+
+kakashi-reverse-allow() {
+    kakashi-reverse-add-to-list $1 "allow";
+}
+
+domain-whois-info() {
+    whois "$1" | grep Registr;
+}
+
+actionForDomain() {
+    DOMAIN=$1;
+    ACTION=${2:-};
+    case "$ACTION" in
+      d ) kakashi-reverse-deny $DOMAIN;;
+      a ) kakashi-reverse-allow $DOMAIN;;
+      * ) echo "none";;
+    esac
+}
+
+
 cat /var/log/kakashi-flood-reverse-monitor.log | grep "reverse" |\
 grep -v -f ~/.kakashi/reverse.allow | grep -v -f ~/.kakashi/reverse.deny | \
 cut -d "," -f 2 | sort -u  | tee ~/.kakashi/reverse.domains.txt
 
-#Reorder Deny List
-kakashi-reverse-reorder-list() {
-    cat ~/.kakashi/reverse.deny | sort -u > /tmp/kakashi-reverse-deny; cat /tmp/kakashi-reverse-deny  > ~/.kakashi/reverse.deny;
-}
+for L in `cat ~/.kakashi/reverse.domains.txt`;do
+   domain-whois-info $L
+   echo "Deny = d | Add to flood whitelist = a | ENTER for do nothing"
+   read -p "Action for $L? (d/a): " choice
+   actionForDomain $L $choice
+done
 
-kakashi-reverse-deny() { echo "$1" >> ~/.kakashi/reverse.deny; }
+
+kakashi-reverse-reorder-list deny
+kakashi-reverse-reorder-list allow
