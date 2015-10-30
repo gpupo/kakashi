@@ -50,7 +50,7 @@ for L in `cat ~/.kakashi/reverse.domains.txt`;do
    echo "Deny = d | Add to flood whitelist = a | Suspect = s | ENTER for do nothing"
    read -p "Action for $L? (d/a/s): " choice
    actionForDomain $L $choice
-   printf "---\n\n";
+   printf "\n\n";
 done
 
 
