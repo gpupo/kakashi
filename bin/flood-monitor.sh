@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-29-14h54 | source: src/flood-monitor/
+# build-2015-10-30-09h42 | source: src/flood-monitor/
 #
 ##
 
@@ -104,7 +104,7 @@ floodMonitor() {
                choiceActionForIp $IP;
            else
                echo "Default action: $DEFAULT_ACTION";
-               actionForIp $IP $DEFAULT_ACTION
+               actionForIp $IP $DEFAULT_ACTION "Flood ($COUNT hits)"
            fi
        fi
     done

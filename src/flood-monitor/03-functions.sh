@@ -64,7 +64,7 @@ floodMonitor() {
                choiceActionForIp $IP;
            else
                echo "Default action: $DEFAULT_ACTION";
-               actionForIp $IP $DEFAULT_ACTION
+               actionForIp $IP $DEFAULT_ACTION "Flood ($COUNT hits)"
            fi
        fi
     done
