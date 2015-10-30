@@ -21,6 +21,7 @@ kakashi-reverse-allow() {
 }
 
 domain-whois-info() {
+    echo "=====$L=====";
     whois "$1" | grep Registr;
 }
 
@@ -40,7 +41,7 @@ grep -v -f ~/.kakashi/reverse.allow | grep -v -f ~/.kakashi/reverse.deny | \
 cut -d "," -f 2 | sort -u  | tee ~/.kakashi/reverse.domains.txt
 
 for L in `cat ~/.kakashi/reverse.domains.txt`;do
-   domain-whois-info $L
+   domain-whois-info $L;
    echo "Deny = d | Add to flood whitelist = a | ENTER for do nothing"
    read -p "Action for $L? (d/a): " choice
    actionForDomain $L $choice
