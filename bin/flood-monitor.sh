@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-30-13h49 | source: src/flood-monitor/
+# build-2015-10-30-14h14 | source: src/flood-monitor/
 #
 ##
 
@@ -31,6 +31,7 @@
 # - Non interactive With parameters:
 # export DEFAULT_ACTION=t; export MEDIAN=300; export DENY_TTL=6h; ~/kakashi/bin/flood-monitor.sh
 #
+SAMPLE_SIZE=${SAMPLE_SIZE:-100};
 MEDIAN=${MEDIAN:-300};
 DENY_TTL=${DENY_TTL:-2h};
 DEFAULT_ACTION=${DEFAULT_ACTION:-};
@@ -72,9 +73,9 @@ floodDeny() {
 
 floodList() {
     compileIgnoreList;
-    tail -n 20000 /var/log/httpd/access_log \
-    | grep -v -f /tmp/kakashi-flood-ignore | tail -n 10000 | cut -d' ' -f 1,12-14 \
-    | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n 100 > /tmp/kakashi-flood-result;
+    tail -n $((SAMPLE_SIZE * 200)) /var/log/httpd/access_log \
+    | grep -v -f /tmp/kakashi-flood-ignore | tail -n $((SAMPLE_SIZE * 100)) | cut -d' ' -f 1,12-14 \
+    | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n $SAMPLE_SIZE > /tmp/kakashi-flood-result;
 }
 
 choiceActionForIp() {
