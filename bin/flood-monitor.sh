@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-11-03-10h32 | source: src/flood-monitor/
+# build-2015-11-03-10h34 | source: src/flood-monitor/
 #
 ##
 
@@ -113,7 +113,7 @@ floodMonitor() {
 }
 
 reverseDNSLookupDomain() {
-    host $1 | tr "\n" " " | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
+    host "$1" | tr "\n" " " | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
 }
 
 reverseDNSLookup() {

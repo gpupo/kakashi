@@ -5,8 +5,8 @@ source $APP_PATH/common.sh;
 for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot" /var/log/httpd/access_log | cut -d " " -f1 | sort -u`;do
    h=$(host "$IP" | tr "\n" " " | rev | cut -d "." -f2-3 | rev)
    if grep -q "$h" ~/kakashi/data/bots; then
-       echo -n "$executionId Ok bot [$h]";
+       echo "$executionId Ok bot [$h]";
    else
-       echo -n "$executionId Fake bot [$h]";
+       echo "$executionId Fake bot [$h]";
    fi
 done

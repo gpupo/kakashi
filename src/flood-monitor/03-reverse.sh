@@ -1,6 +1,6 @@
 
 reverseDNSLookupDomain() {
-    host $1 | tr "\n" " " | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
+    host "$1" | tr "\n" " " | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
 }
 
 reverseDNSLookup() {
