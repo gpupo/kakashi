@@ -29,8 +29,8 @@ floodDeny() {
 
 floodList() {
     compileIgnoreList;
-    tail -n $((SAMPLE_SIZE * 200)) /var/log/httpd/access_log \
-    | grep -v -f /tmp/kakashi-flood-ignore | tail -n $((SAMPLE_SIZE * 100)) | cut -d' ' -f 1,12-14 \
+    tail -n 20000 /var/log/httpd/access_log \
+    | grep -v -f /tmp/kakashi-flood-ignore | tail -n 10000 | cut -d' ' -f 1,12-14 \
     | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n $SAMPLE_SIZE > /tmp/kakashi-flood-result;
 }
 
