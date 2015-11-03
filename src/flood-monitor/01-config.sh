@@ -5,7 +5,5 @@ DEFAULT_ACTION=${DEFAULT_ACTION:-};
 REVERSE_CHECK=${REVERSE_CHECK:-false};
 touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow ~/.kakashi/reverse.suspect ~/.kakashi/config
 
-#Custom config file for overwrite default values
-source ~/.kakashi/config
-
-executionId=$(date +%Y-%m-%d-%H:%M);
+APP_PATH="$(dirname $0)";
+source $APP_PATH/common.sh;
