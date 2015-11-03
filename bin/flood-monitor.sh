@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-10-30-14h16 | source: src/flood-monitor/
+# build-2015-11-03-10h15 | source: src/flood-monitor/
 #
 ##
 
@@ -73,8 +73,8 @@ floodDeny() {
 
 floodList() {
     compileIgnoreList;
-    tail -n $((SAMPLE_SIZE * 200)) /var/log/httpd/access_log \
-    | grep -v -f /tmp/kakashi-flood-ignore | tail -n $((SAMPLE_SIZE * 100)) | cut -d' ' -f 1,12-14 \
+    tail -n 20000 /var/log/httpd/access_log \
+    | grep -v -f /tmp/kakashi-flood-ignore | tail -n 10000 | cut -d' ' -f 1,12-14 \
     | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n $SAMPLE_SIZE > /tmp/kakashi-flood-result;
 }
 
@@ -115,14 +115,23 @@ floodMonitor() {
 }
 
 reverseDNSLookupDomain() {
-    host $1 | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
-};
+    host $1 | tr "\n" " " | rev | cut -d "." -f2-3 | rev | sed 's/arpa domain name pointer //g';
+}
+
+reverseDNSLookup() {
+    r=$(reverseDNSLookupDomain $1);
+    if [ $r == 'in-addr.arpa' ]; then
+        reverseDNSLookupDomain "$(echo $1|cut -d '.' -f1-2).1.1";
+    else
+         echo $r;
+    fi;
+}
 
 reverseMonitor() {
     for L in `cat /tmp/kakashi-flood-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
        IP=$(echo $L | cut -d ";" -f 3)
        COUNT=$(echo $L | cut -d ";" -f 2)
-       reverseDomain=$(reverseDNSLookupDomain $IP);
+       reverseDomain=$(reverseDNSLookup $IP);
        listed=0;
        if grep -q "$reverseDomain" ~/.kakashi/reverse.deny; then
            listed=1;
