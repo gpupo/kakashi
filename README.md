@@ -13,6 +13,7 @@ Custom regex matching for **CSF**
   - Host is ratelimited
   - Incorrect authentication data
   - Watch http login fail with http status code 401
+  - RBL based
 - Permanant IP block
   - On mail server detected a message with a absurd spam score
 - CLI Tools
