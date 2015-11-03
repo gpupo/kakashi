@@ -7,6 +7,7 @@ for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot" /var/log/httpd/access_log |
    if grep -q "$h" ~/kakashi/data/bots; then
        echo "$executionId Ok bot [$h]";
    else
-       echo "$executionId Fake bot [$h]";
+       echo "$executionId Fake bot [$IP=>$h]";
+       grep -m 200 $IP /var/log/httpd/access_log;
    fi
 done
