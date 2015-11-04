@@ -16,7 +16,7 @@ for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot" /var/log/httpd/access_log |
    if grep -q "$h" ~/kakashi/data/bots; then
       continue;
    else
-       printf '\n\n====FAKE DETECTED ====';
+       printf '\n\n====FAKE DETECTED ==== ';
        grep -m 1 $IP /var/log/httpd/access_log;
        echo -n "$executionId Fake bot [$IP=>$h] Action: $DEFAULT_ACTION,";
        actionForIp $IP $DEFAULT_ACTION "$h FAKE BOT"
@@ -25,10 +25,16 @@ done
 
 printf '\n\n====SUMMARY ====';
 
-list=(TweetmemeBot trendictionbot adsbot msnbot YandexImageResizer SurdotlyBot MJ12bot Googlebot DotBot bingbot archive.org_bot);
+list=(TweetmemeBot trendictionbot adsbot msnbot YandexImageResizer SurdotlyBot \
+MJ12bot Googlebot DotBot bingbot archive.org_bot facebookexternalhit brandwatch \
+Mediapartners-Google python-requests okhttp MiniRedir uhChat facebookplatform);
 
 for item in "${list[@]}"
 do
     echo -n "${item}:";
     grep -c "${item}" /var/log/httpd/access_log
 done
+
+grep  cron /var/log/httpd/access_log | cut -d " " -f1 | sort -u
+
+tail -f /var/log/httpd/access_log | grep -v "Mozilla/5.0\|Pingdom\|IPN\|TweetmemeBot\|trendictionbot\|adsbot\|msnbot\|YandexImageResizer\|SurdotlyBot\|MJ12bot\|Googlebot\|DotBot\|bingbot\|archive.org_bot\|facebookexternalhit"
