@@ -35,6 +35,8 @@ do
     grep -c "${item}" /var/log/httpd/access_log
 done
 
+printf '\n\n====Type 2 ====';
+
 grep  cron /var/log/httpd/access_log | cut -d " " -f1 | sort -u
 
-tail -f /var/log/httpd/access_log | grep -v "Mozilla/5.0\|Pingdom\|IPN\|TweetmemeBot\|trendictionbot\|adsbot\|msnbot\|YandexImageResizer\|SurdotlyBot\|MJ12bot\|Googlebot\|DotBot\|bingbot\|archive.org_bot\|facebookexternalhit"
+#tail -f /var/log/httpd/access_log | grep -v "Mozilla/5.0\|Pingdom\|IPN\|TweetmemeBot\|trendictionbot\|adsbot\|msnbot\|YandexImageResizer\|SurdotlyBot\|MJ12bot\|Googlebot\|DotBot\|bingbot\|archive.org_bot\|facebookexternalhit"
