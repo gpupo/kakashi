@@ -16,8 +16,19 @@ for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot" /var/log/httpd/access_log |
    if grep -q "$h" ~/kakashi/data/bots; then
       continue;
    else
-       grep -m 10 $IP /var/log/httpd/access_log;
+       printf '\n\n====FAKE DETECTED ====';
+       grep -m 1 $IP /var/log/httpd/access_log;
        echo -n "$executionId Fake bot [$IP=>$h] Action: $DEFAULT_ACTION,";
        actionForIp $IP $DEFAULT_ACTION "$h FAKE BOT"
    fi
+done
+
+printf '\n\n====SUMMARY ====';
+
+list=(TweetmemeBot trendictionbot adsbot msnbot YandexImageResizer SurdotlyBot MJ12bot Googlebot DotBot bingbot archive.org_bot);
+
+for item in "${list[@]}"
+do
+    echo -n "${item}:";
+    grep -c "${item}" /var/log/httpd/access_log
 done
