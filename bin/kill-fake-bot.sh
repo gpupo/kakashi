@@ -11,7 +11,7 @@
 APP_PATH="$(dirname $0)";
 source $APP_PATH/common.sh;
 
-for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot" /var/log/httpd/access_log | cut -d " " -f1 | sort -u`;do
+for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot\|python-requests" /var/log/httpd/access_log | grep -v -f /tmp/kakashi-flood-ignore | cut -d " " -f1 | sort -u`;do
    h=$(host "$IP" | tr "\n" " " | rev | cut -d "." -f2-3 | rev)
    if grep -q "$h" ~/kakashi/data/bots; then
       continue;
@@ -23,7 +23,7 @@ for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot" /var/log/httpd/access_log |
    fi
 done
 
-printf '\n\n====SUMMARY ====';
+printf '\n\n====SUMMARY ====\n\n';
 
 list=(TweetmemeBot trendictionbot adsbot msnbot YandexImageResizer SurdotlyBot \
 MJ12bot Googlebot DotBot bingbot archive.org_bot facebookexternalhit brandwatch \
@@ -35,7 +35,7 @@ do
     grep -c "${item}" /var/log/httpd/access_log
 done
 
-printf '\n\n====Type 2 ====';
+printf '\n\n====Type 2 ====\n\n';
 
 grep  cron /var/log/httpd/access_log | cut -d " " -f1 | sort -u
 
