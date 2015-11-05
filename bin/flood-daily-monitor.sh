@@ -27,9 +27,14 @@ for L in `cat /tmp/kakashi-daily-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
             info=$(csf -i $IP | cut -d "(" -f2 | cut -d ")" -f1);
             country=$(echo $info | cut -d "/" -f1);
             if [ "$country" ==  "BR" ]; then
-                printf "\n$IP,$info,$COUNT";
+                printf "$IP,$info,$COUNT\n";
+                printf "\n-----\n";
+                floodGrep "$IP";
+                printf "\n-----\n";
             else
+                printf "Temporary Block $IP,$info,$COUNT\n";
                 actionForIp $IP $DEFAULT_ACTION "KAKASHI Daily limit reached from $info ($COUNT)";
+                printf "\n";
             fi
         fi
     fi
