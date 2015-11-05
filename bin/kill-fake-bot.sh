@@ -17,7 +17,7 @@ for IP in `grep "Googlebot\|bingbot\|msnbot\|adsbot\|python-requests" /var/log/h
       continue;
    else
        printf '\n\n====FAKE DETECTED ==== ';
-       grep -m 1 $IP /var/log/httpd/access_log;
+       grep -m 10 $IP /var/log/httpd/access_log;
        echo -n "$executionId Fake bot [$IP=>$h] Action: $DEFAULT_ACTION,";
        actionForIp $IP $DEFAULT_ACTION "$h FAKE BOT"
    fi
@@ -27,7 +27,7 @@ printf '\n\n====SUMMARY ====\n\n';
 
 list=(TweetmemeBot trendictionbot adsbot msnbot YandexImageResizer SurdotlyBot \
 MJ12bot Googlebot DotBot bingbot archive.org_bot facebookexternalhit brandwatch \
-Mediapartners-Google python-requests okhttp MiniRedir uhChat facebookplatform);
+Mediapartners-Google python-requests okhttp MiniRedir uhChat facebookplatform Genieo Feedly HttpClient);
 
 for item in "${list[@]}"
 do
