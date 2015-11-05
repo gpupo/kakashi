@@ -11,7 +11,7 @@
 APP_PATH="$(dirname $0)";
 source $APP_PATH/common.sh;
 
-if [ "$1" != "cache"]; then
+if [ "$1" != "cache" ]; then
     cut -d " " -f1 /var/log/httpd/access_log | grep -v -f /tmp/kakashi-flood-ignore | sort | uniq -c | sort -gr| head -n 50 > /tmp/kakashi-daily-result;
 fi
 
