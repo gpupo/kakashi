@@ -36,7 +36,7 @@ floodAllow() {
 
 floodDenyTemp() {
     COMMENT=${2-"flooder"};
-    csf -td $1 $DENY_TTL "$COMMENT" | tr "\n" ";";
+    csf -td "$1" $DENY_TTL "$COMMENT" | tr "\n" ";";
     echo "";
 }
 

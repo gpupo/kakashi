@@ -24,11 +24,10 @@ for L in `cat /tmp/kakashi-daily-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
         else
             info=$(csf -i $IP | cut -d "(" -f2 | cut -d ")" -f1);
             country=$(echo $info | cut -d "/" -f1);
-            printf "\n ** $info \n";
             if [ "$country" ==  "BR" ]; then
-                printf "\n ** BR \n";
+                printf "\nBR,$IP,$info,$count\n";
             else
-                actionForIp $IP $DEFAULT_ACTION "KAKASHI Daily limit reached from $info ($COUNT)";
+                actionForIp $IP $DEFAULT_ACTION "KAKASHI Daily limit reached from  ($COUNT)";
             fi
         fi
     fi
