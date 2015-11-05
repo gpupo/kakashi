@@ -19,7 +19,7 @@ for L in `cat /tmp/kakashi-daily-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
     IP=$(echo $L | cut -d ";" -f 3)
     COUNT=$(echo $L | cut -d ";" -f 2)
     if [ "$COUNT" -gt 900 ]; then
-        if csf -g $IP | grep -q "csf.deny\|csf.allow"; then
+        if csf -g $IP | grep -q "csf.deny\|csf.allow\|Temporary Blocks"; then
             printf "\n * Bypass $IP\n";
         else
             info=$(csf -i $IP | cut -d "(" -f2 | cut -d ")" -f1);
