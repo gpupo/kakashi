@@ -20,12 +20,12 @@ for L in `cat /tmp/kakashi-daily-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
     COUNT=$(echo $L | cut -d ";" -f 2)
     if [ "$COUNT" -gt 900 ]; then
         if csf -g $IP | grep -q "csf.deny\|csf.allow\|Temporary Blocks"; then
-            printf "\n * Bypass $IP\n";
+            printf "\n * Bypass $IP";
         else
             info=$(csf -i $IP | cut -d "(" -f2 | cut -d ")" -f1);
             country=$(echo $info | cut -d "/" -f1);
             if [ "$country" ==  "BR" ]; then
-                printf "\nBR,$IP,$info,$count\n";
+                printf "\n$IP,$info,$COUNT";
             else
                 actionForIp $IP $DEFAULT_ACTION "KAKASHI Daily limit reached from  ($COUNT)";
             fi
