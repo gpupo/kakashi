@@ -11,9 +11,9 @@
 APP_PATH="$(dirname $0)";
 source $APP_PATH/common.sh;
 
-if [ "$1" != "cache" ]; then
-    cut -d " " -f1 /var/log/httpd/access_log | grep -v -f /tmp/kakashi-flood-ignore | sort | uniq -c | sort -gr| head -n 50 > /tmp/kakashi-daily-result;
-fi
+CUSTOM_LOG_PATH=${1:-$HTTPD_LOG_PATH};
+
+cut -d " " -f1 $CUSTOM_LOG_PATH | grep -v -f /tmp/kakashi-flood-ignore | sort | uniq -c | sort -gr| head -n 50 > /tmp/kakashi-daily-result;
 
 printf "\n";
 
@@ -28,9 +28,6 @@ for L in `cat /tmp/kakashi-daily-result| tr -s " "| tr "\t" ";" | tr " " ";"`;do
             country=$(echo $info | cut -d "/" -f1);
             if [ "$country" ==  "BR" ]; then
                 printf "$IP,$info,$COUNT\n";
-                printf "\n-----\n";
-                floodGrep "$IP";
-                printf "\n-----\n";
             else
                 printf "Temporary Block $IP,$info,$COUNT\n";
                 actionForIp $IP $DEFAULT_ACTION "KAKASHI Daily limit reached from $info ($COUNT)";
