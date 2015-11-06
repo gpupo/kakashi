@@ -5,7 +5,7 @@ reverseDNSLookupDomain() {
 
 reverseDNSLookup() {
     r=$(reverseDNSLookupDomain $1);
-    if [ $r == 'in-addr.arpa' ]; then
+    if [ "$r" == 'in-addr.arpa' ]; then
         reverseDNSLookupDomain "$(echo $1|cut -d '.' -f1-2).1.1";
     else
          echo $r;

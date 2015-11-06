@@ -11,7 +11,7 @@
 # Warning: This file is generated automatically.
 # To improve it, see bin/build.sh and edit the corresponding source code
 #
-# build-2015-11-06-09h06 | source: src/flood-monitor/
+# build-2015-11-06-09h26 | source: src/flood-monitor/
 #
 ##
 
@@ -69,7 +69,7 @@ reverseDNSLookupDomain() {
 
 reverseDNSLookup() {
     r=$(reverseDNSLookupDomain $1);
-    if [ $r == 'in-addr.arpa' ]; then
+    if [ "$r" == 'in-addr.arpa' ]; then
         reverseDNSLookupDomain "$(echo $1|cut -d '.' -f1-2).1.1";
     else
          echo $r;
