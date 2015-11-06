@@ -12,6 +12,7 @@
 SAMPLE_SIZE=${SAMPLE_SIZE:-100};
 MEDIAN=${MEDIAN:-300};
 DENY_TTL=${DENY_TTL:-2h};
+HTTPD_LOG_PATH=${HTTPD_LOG_PATH:-"/var/log/httpd/access_log"};
 DEFAULT_ACTION=${DEFAULT_ACTION:-};
 REVERSE_CHECK=${REVERSE_CHECK:-false};
 touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow ~/.kakashi/reverse.suspect ~/.kakashi/config
