@@ -1,6 +1,6 @@
 floodList() {
     compileIgnoreList;
-    tail -n 20000 $HTTPD_LOG_PATH \
+    tail -n 20000 $HTTPD_LOG_PATH | grep -v "\"$" \
     | grep -v -f /tmp/kakashi-flood-ignore | tail -n 10000 | cut -d' ' -f 1,12-14 \
     | tr ' "' "\t" | tr "(" " " | sort | uniq -c | sort -gr| head -n $SAMPLE_SIZE > /tmp/kakashi-flood-result;
 }
