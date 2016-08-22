@@ -19,9 +19,9 @@ MEDIAN=350;
 DENY_TTL=6h;
 REVERSE_CHECK=true;
 
-lockfile -r 0 /tmp/kakashi-cron.lock || exit 1
+lockfile -r 0 /tmp/kakashi-cron-script.lock || exit 1
 
 alias csf="/usr/sbin/csf";
 source ~/kakashi/bin/flood-monitor.sh
 
-rm -f /tmp/kakashi-cron.lock;
+rm -f /tmp/kakashi-cron-script.lock;
