@@ -1,4 +1,7 @@
 #!/bin/bash
+# @Date:   2015-11-03T10:30:08-02:00
+# @Modified at 2016-08-23T09:24:19-03:00
+# {release_id}
 #
 #  This file is part of gpupo/kakashi
 # http://www.g1mr.com/kakashi
@@ -15,7 +18,8 @@ DENY_TTL=${DENY_TTL:-2h};
 HTTPD_LOG_PATH=${HTTPD_LOG_PATH:-"/var/log/httpd/access_log"};
 DEFAULT_ACTION=${DEFAULT_ACTION:-};
 REVERSE_CHECK=${REVERSE_CHECK:-false};
-touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow ~/.kakashi/reverse.suspect ~/.kakashi/config
+mkdir -p ~/.kakashi;
+touch ~/.kakashi/allow ~/.kakashi/reverse.deny ~/.kakashi/reverse.allow ~/.kakashi/reverse.suspect ~/.kakashi/config /tmp/kakashi-flood-ignore
 
 #Custom config file for overwrite default values
 source ~/.kakashi/config

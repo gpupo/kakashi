@@ -20,7 +20,7 @@ Custom regex matching for **CSF**
   - Enable SpamAssassin auto-deletion
   - Tool for checking high hits on httpd server
 
-- [ ] More
+- More
   - [ ] Using the Lightning Cutter
   - [ ] Takes up office as the Sixth Hokage
 
@@ -47,6 +47,12 @@ On a server with [CSF](http://www.configserver.com/cp/csf.html) previously insta
 3) Get kakashi:
 
     git clone --depth=1 https://github.com/gpupo/kakashi.git ~/kakashi;
+
+or without git:
+
+    wget https://github.com/gpupo/kakashi/archive/1.0.0.tar.gz;
+    tar -zxvf 1.0.0.tar.gz;
+    mv kakashi-1.0.0 ~/kakashi;
 
 4) Put rules:
 
